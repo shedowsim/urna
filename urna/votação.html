@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votação</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <a id="inicio" href="index.html">Início</a>
+
+    <main class="voting-container" role="application" aria-label="Urna eletrônica">
+        <!-- teclado numérico (em cima) -->
+        <div class="keypad" aria-hidden="false">
+            <button class="key" data-key="1">1</button>
+            <button class="key" data-key="2">2</button>
+            <button class="key" data-key="3">3</button>
+            <button class="key" data-key="4">4</button>
+            <button class="key" data-key="5">5</button>
+            <button class="key" data-key="6">6</button>
+            <button class="key" data-key="7">7</button>
+            <button class="key" data-key="8">8</button>
+            <button class="key" data-key="9">9</button>
+            <button class="key" data-key="C">C</button>
+            <button class="key" data-key="0">0</button>
+            <button class="key" data-key="⌫">⌫</button>
+        </div>
+
+        <!-- visor exibindo os números digitados -->
+        <div id="display" class="display" role="status" aria-live="polite">—</div>
+
+        <!-- botão confirmar (embaixo) -->
+        <button id="confirm">Confirmar</button>
+    </main>
+
+    <!-- botão ajuda no canto inferior direito (mesma aparência do index) -->
+    <a href="ajuda.html"><input type="button" value="ajuda" id="ajuda"></a>
+
+<script>
+    (function(){
+        const displayEl = document.getElementById('display');
+        const keys = Array.from(document.querySelectorAll('.key'));
+        const confirmBtn = document.getElementById('confirm');
+        let value = '';
+        const MAX_DIGITS = 10;
+
+        function updateDisplay(){
+            displayEl.textContent = value === '' ? '—' : value;
+        }
+
+        function pressKey(k){
+            if (k === 'C') { value = ''; }
+            else if (k === '⌫') { value = value.slice(0,-1); }
+            else if (value.length < MAX_DIGITS) { value += k; }
+            updateDisplay();
+        }
+
+        keys.forEach(btn => btn.addEventListener('click', () => pressKey(btn.dataset.key)));
+
+        // atalhos do teclado físico
+        window.addEventListener('keydown', (e) => {
+            if (/^[0-9]$/.test(e.key)) { pressKey(e.key); e.preventDefault(); }
+            else if (e.key === 'Backspace') { pressKey('⌫'); e.preventDefault(); }
+            else if (e.key.toLowerCase() === 'c') { pressKey('C'); }
+            else if (e.key === 'Enter') { confirmVote(); }
+        });
+
+        function confirmVote(){
+            if (!value) return alert('Nenhum número digitado.');
+            // ação de confirmação — por enquanto apenas mostra mensagem e limpa
+            alert('Confirmado: ' + value);
+            value = '';
+            updateDisplay();
+        }
+
+        confirmBtn.addEventListener('click', confirmVote);
+        updateDisplay();
+    })();
+</script>
+</body>
+</html>

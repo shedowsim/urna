@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <ul class="descrição">
+        <h1 id="hello"></h1>
+        <p>𝙘𝙖𝙨𝙤 𝙫𝙘 𝙣𝙪𝙣𝙘𝙖 𝙩𝙚𝙣𝙝𝙖 𝙫𝙤𝙩𝙖𝙙𝙤 𝙚𝙢 𝙪𝙢𝙖 𝙪𝙧𝙣𝙖 𝙚𝙡𝙚𝙩𝙧𝙤𝙣𝙞𝙘𝙖 𝙧𝙚𝙘𝙤𝙢𝙚𝙣𝙙𝙖𝙢𝙤𝙨 𝙦𝙪𝙚 𝙘𝙡𝙞𝙦𝙪𝙚 𝙣𝙤 𝙗𝙤𝙩𝙖̃𝙤 𝙙𝙚 𝙖𝙟𝙪𝙙𝙖 𝙡𝙤𝙘𝙖𝙡𝙞𝙯𝙖𝙙𝙤 𝙣𝙤 𝙘𝙖𝙣𝙩𝙤 𝙞𝙣𝙛𝙚𝙧𝙞𝙤𝙧 𝙙𝙞𝙧𝙚𝙞𝙩𝙤 𝙙𝙖 𝙩𝙚𝙡𝙖, 𝙡𝙖́ 𝙩𝙚𝙢 𝙪𝙢 𝙥𝙖𝙨𝙨𝙤 𝙖 𝙥𝙖𝙨𝙨𝙤 𝙙𝙚 𝙘𝙤𝙢𝙤 𝙫𝙤𝙩𝙖𝙧 𝙪𝙨𝙖𝙣𝙙𝙤 𝙖 𝙪𝙧𝙣𝙖 𝙚𝙡𝙚𝙩𝙧𝙤̂𝙣𝙞𝙘𝙖, 𝙘𝙖𝙨𝙤 𝙫𝙘 𝙟𝙖́ 𝙨𝙖𝙞𝙗𝙖 𝙘𝙤𝙢𝙤 𝙫𝙤𝙩𝙖𝙧 𝙘𝙡𝙞𝙦𝙪𝙚 𝙣𝙤 𝙗𝙤𝙩𝙖̃𝙤 𝙫𝙤𝙩𝙖𝙧, 𝙡𝙤𝙘𝙖𝙡𝙯𝙖𝙙𝙤 𝙡𝙤𝙜𝙤 𝙖 𝙗𝙖𝙞𝙭𝙤 𝙙𝙚𝙨𝙨𝙖 𝙢𝙚𝙣𝙨𝙖𝙜𝙚𝙢.</p>
+        <a href="votação.html"><input type="button" value="Votar" id="votar"></a>
+
+    </ul>
+    <h2 id="horario"></h2>
+    <a href="ajuda.html"><input type="button" value="ajuda" id="ajuda"></a>
+<script>
+    function atualizarHorario() {
+        var hoje = new Date();
+        var hora = hoje.getHours();
+        var minuto = hoje.getMinutes();
+        var saudacao = window.document.getElementById("hello");
+        if (hora >= 0 && hora < 12) {
+            saudacao.innerHTML = "Bom dia, seja bem vindo a urna eletrônica";
+        } else if (hora >= 12 && hora < 18) {
+            saudacao.innerHTML = "Boa tarde, seja bem vindo a urna eletrônica";
+        } else {
+            saudacao.innerHTML = "Boa noite, seja bem vindo a urna eletrônica";
+        }
+        var horario = window.document.getElementById("horario");
+        horario.innerHTML = hora + ":" + minuto;
+    }
+    
+    atualizarHorario();
+    setInterval(atualizarHorario, 60000);
+    </script>
+</body>
+</html>
